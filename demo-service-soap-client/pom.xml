@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.francetv.foundation</groupId>
+    <artifactId>foundation-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>fr.francetv.demo</groupId>
+  <artifactId>demo-service-soap-client</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>demo-service-soap-client</name>
+
+  <properties>
+    <cxf.version>4.0.5</cxf.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>fr.francetv.foundation</groupId>
+        <artifactId>foundation-bom</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>${cxf.version}</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+            <configuration>
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdl>${project.basedir}/src/main/resources/wsdl/item-service.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>fr.francetv.demo.soap.client</extraarg>
+                  </extraargs>
+                </wsdlOption>
+              </wsdlOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

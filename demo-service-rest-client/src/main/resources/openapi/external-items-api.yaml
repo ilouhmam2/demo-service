@@ -1,0 +1,31 @@
+openapi: "3.0.3"
+info:
+  title: External Items API
+  version: "1.0"
+paths:
+  /api/external/items:
+    get:
+      operationId: getExternalItems
+      summary: List all external items
+      tags:
+        - ExternalItems
+      responses:
+        "200":
+          description: List of external items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalItem'
+components:
+  schemas:
+    ExternalItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string

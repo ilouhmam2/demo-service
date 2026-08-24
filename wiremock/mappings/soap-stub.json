@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/soap/ItemService",
+    "bodyPatterns": [
+      {
+        "matchesXPath": "//*[local-name()='id' and text()='1']"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/xml;charset=UTF-8"
+    },
+    "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><tns:GetItemResponse xmlns:tns=\"http://demo.francetv.fr/soap/item\"><tns:id>1</tns:id><tns:name>SOAP Item</tns:name></tns:GetItemResponse></soapenv:Body></soapenv:Envelope>"
+  }
+}

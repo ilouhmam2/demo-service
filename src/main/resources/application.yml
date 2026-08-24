@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: demo-service
+  docker:
+    compose:
+      lifecycle-management: start-and-stop
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo_db
+    username: demo
+    password: demo
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+foundation:
+  nats:
+    server-url: nats://localhost:4222
+  http-client:
+    base-url: http://localhost:8089
+    connect-timeout: 5s
+    read-timeout: 10s
+    clients:
+      external-items:
+        base-url: http://localhost:8089
+        connect-timeout: 5s
+        read-timeout: 10s
+  soap-client:
+    connect-timeout: 5s
+    receive-timeout: 30s
+
+demo:
+  soap:
+    item-service-address: http://localhost:8089/soap/ItemService
+  logging:
+    json-format: true

@@ -1,0 +1,5 @@
+[
+  {"id": "ext-1", "name": "External Widget",  "description": "A widget from the external service"},
+  {"id": "ext-2", "name": "External Gadget",  "description": "A gadget from the external service"},
+  {"id": "ext-3", "name": "External Doohickey","description": "A doohickey from the external service"}
+]

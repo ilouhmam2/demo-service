@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.francetv.foundation</groupId>
+    <artifactId>foundation-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>fr.francetv.demo</groupId>
+  <artifactId>demo-service-rest-client</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>demo-service-rest-client</name>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>fr.francetv.foundation</groupId>
+        <artifactId>foundation-bom</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <properties>
+    <openapi-generator.version>7.10.0</openapi-generator.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webflux</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>${openapi-generator.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.basedir}/src/main/resources/openapi/external-items-api.yaml</inputSpec>
+              <generatorName>java</generatorName>
+              <library>webclient</library>
+              <apiPackage>fr.francetv.demo.client.api</apiPackage>
+              <modelPackage>fr.francetv.demo.client.model</modelPackage>
+              <generateApiTests>false</generateApiTests>
+              <generateModelTests>false</generateModelTests>
+              <generateApiDocumentation>false</generateApiDocumentation>
+              <generateModelDocumentation>false</generateModelDocumentation>
+              <generateApis>false</generateApis>
+              <generateSupportingFiles>false</generateSupportingFiles>
+              <configOptions>
+                <useJakartaEe>true</useJakartaEe>
+                <openApiNullable>false</openApiNullable>
+                <useSpringBoot3>true</useSpringBoot3>
+              </configOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

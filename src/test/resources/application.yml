@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: demo-service
+  datasource:
+    url: jdbc:tc:postgresql:16:///testdb
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true

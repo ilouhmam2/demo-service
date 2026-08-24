@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.francetv.foundation</groupId>
+    <artifactId>foundation-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>fr.francetv.demo</groupId>
+  <artifactId>demo-service</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>demo-service</name>
+
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>fr.francetv.foundation</groupId>
+        <artifactId>foundation-bom</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+
+    <!-- Generated REST client (external items) -->
+    <dependency>
+      <groupId>fr.francetv.demo</groupId>
+      <artifactId>demo-service-rest-client</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <!-- Generated SOAP client (item service) -->
+    <dependency>
+      <groupId>fr.francetv.demo</groupId>
+      <artifactId>demo-service-soap-client</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <!-- Reactor Netty required by foundation-http-client-starter WebClient -->
+    <dependency>
+      <groupId>io.projectreactor.netty</groupId>
+      <artifactId>reactor-netty-http</artifactId>
+    </dependency>
+
+    <!-- Mandatory capabilities -->
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-core-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-api-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-logging-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-observability-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-mapping-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-test-starter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.wiremock</groupId>
+      <artifactId>wiremock</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Optional capability: data -->
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-data-starter</artifactId>
+    </dependency>
+    <!-- Optional capability: nats -->
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-nats-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.nats</groupId>
+      <artifactId>jnats</artifactId>
+    </dependency>
+    <!-- Optional capability: http-client -->
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-http-client-starter</artifactId>
+    </dependency>
+    <!-- Optional capability: soap-client -->
+    <dependency>
+      <groupId>fr.francetv.foundation</groupId>
+      <artifactId>foundation-soap-client-starter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-docker-compose</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>${lombok-mapstruct-binding.version}</version>
+            </path>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>check-use-case-and-mapper-coverage</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>fr.francetv.demo.application.usecase.*</include>
+                    <include>fr.francetv.demo.infrastructure.adapter.in.web.ItemMapperImpl</include>
+                    <include>fr.francetv.demo.infrastructure.adapter.out.persistence.ItemPersistenceMapperImpl</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>INSTRUCTION</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.80</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

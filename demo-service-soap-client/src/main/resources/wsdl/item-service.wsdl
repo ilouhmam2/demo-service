@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://demo.francetv.fr/soap/item"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://demo.francetv.fr/soap/item"
+                  name="ItemService">
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://demo.francetv.fr/soap/item">
+
+      <xsd:element name="GetItemRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetItemResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="GetItemRequest">
+    <wsdl:part name="parameters" element="tns:GetItemRequest"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetItemResponse">
+    <wsdl:part name="parameters" element="tns:GetItemResponse"/>
+  </wsdl:message>
+
+  <wsdl:portType name="ItemServicePortType">
+    <wsdl:operation name="GetItem">
+      <wsdl:input message="tns:GetItemRequest"/>
+      <wsdl:output message="tns:GetItemResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="ItemServiceBinding" type="tns:ItemServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetItem">
+      <soap:operation soapAction="getItem"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="ItemService">
+    <wsdl:port name="ItemServicePort" binding="tns:ItemServiceBinding">
+      <soap:address location="http://localhost:8089/soap/ItemService"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>
