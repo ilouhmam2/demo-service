@@ -43,7 +43,7 @@ demo-service-soap-client/target/
 *.iml
 *.iws
 *.ipr
-out/
+/out/
 
 # ============================================================
 # IDE - Eclipse / STS
